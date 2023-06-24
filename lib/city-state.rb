@@ -39,7 +39,7 @@ module CS
 
     # get zipped file
     return false if !@maxmind_zip_url
-    f_zipped = open(@maxmind_zip_url)
+    f_zipped = URI.open(@maxmind_zip_url)
 
     # unzip file:
     # recursively searches for "GeoLite2-City-Locations-en"
@@ -180,7 +180,7 @@ module CS
           else
             index = @cities[country][state].index(old_value)
             if index.nil?
-              @cities[country][state][] = new_value
+              @cities[country][state] << new_value
             else
               @cities[country][state][index] = new_value
             end
